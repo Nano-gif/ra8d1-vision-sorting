@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页总览布局参考 v3</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #c8ced5;
+      color: #1f2933;
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .page {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .screen-wrap {
+      width: 640px;
+    }
+
+    .caption {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: #27313b;
+    }
+
+    .scale-box {
+      width: 640px;
+      height: 480px;
+      overflow: hidden;
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.2);
+      background: #d7dde4;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      transform: scale(2);
+      transform-origin: left top;
+      background: #d7dde4;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 320px;
+      height: 240px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .text {
+      position: absolute;
+      color: #1f2933;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: 0;
+    }
+
+    .title {
+      left: 10px;
+      top: 7px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .vision-label {
+      left: 206px;
+      top: 9px;
+      color: #4d5966;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .vision-value {
+      left: 260px;
+      top: 9px;
+      width: 36px;
+      color: #1f2933;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .panel-title {
+      top: 38px;
+      color: #3f4c59;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .left-title {
+      left: 14px;
+    }
+
+    .right-title {
+      left: 174px;
+    }
+
+    .label {
+      color: #586473;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .left-label {
+      left: 17px;
+    }
+
+    .left-value {
+      left: 73px;
+    }
+
+    .right-label {
+      left: 174px;
+    }
+
+    .right-value {
+      left: 236px;
+    }
+
+    .r0 {
+      top: 62px;
+    }
+
+    .r1 {
+      top: 88px;
+    }
+
+    .r2 {
+      top: 114px;
+    }
+
+    .r3 {
+      top: 140px;
+    }
+
+    .r4 {
+      top: 166px;
+    }
+
+    .value {
+      width: 61px;
+      height: 18px;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .small-value {
+      width: 63px;
+    }
+
+    .wide {
+      left: 174px;
+      width: 126px;
+      height: 18px;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pos-label {
+      left: 174px;
+      top: 123px;
+    }
+
+    .pos-value {
+      top: 138px;
+    }
+
+    .pose-label {
+      left: 174px;
+      top: 164px;
+    }
+
+    .pose-value {
+      top: 179px;
+    }
+
+    .green {
+      color: #24623d;
+    }
+
+    .blue {
+      color: #1e5f9a;
+    }
+
+    .nav {
+      position: absolute;
+      top: 220px;
+      width: 74px;
+      height: 17px;
+      text-align: center;
+      line-height: 17px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav0 {
+      left: 7px;
+      color: #fff;
+    }
+
+    .nav1 {
+      left: 86px;
+    }
+
+    .nav2 {
+      left: 165px;
+    }
+
+    .nav3 {
+      left: 244px;
+    }
+
+    .note {
+      width: 360px;
+      padding: 14px 16px;
+      background: #eef1f4;
+      border: 1px solid #9fa8b2;
+      box-shadow: 0 6px 18px rgba(23, 31, 39, 0.12);
+    }
+
+    .note h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .note p {
+      margin: 8px 0;
+      line-height: 1.55;
+    }
+
+    .note code {
+      padding: 1px 4px;
+      background: #dfe5eb;
+      border-radius: 2px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="screen-wrap">
+      <p class="caption">首页总览 v3，预览按 2 倍显示</p>
+      <div class="scale-box">
+        <div class="screen">
+          <img class="bg" src="assets/home_overview_bg_320x240_v3.png" alt="">
+
+          <div class="text title">机械臂控制终端</div>
+          <div class="text vision-label">视觉端</div>
+          <div class="text vision-value green">在线</div>
+
+          <div class="text panel-title left-title">系统状态</div>
+          <div class="text panel-title right-title">任务信息</div>
+
+          <div class="text label left-label r0">状态</div>
+          <div class="text value left-value r0 green">就绪</div>
+          <div class="text label left-label r1">模式</div>
+          <div class="text value left-value r1">空闲</div>
+          <div class="text label left-label r2">复位</div>
+          <div class="text value left-value r2">已复位</div>
+          <div class="text label left-label r3">错误码</div>
+          <div class="text value left-value r3">0</div>
+          <div class="text label left-label r4">通信</div>
+          <div class="text value left-value r4 blue">正常</div>
+
+          <div class="text label right-label r0">当前动作</div>
+          <div class="text value small-value right-value r0 blue">NG分拣</div>
+          <div class="text label right-label r1">当前步骤</div>
+          <div class="text value small-value right-value r1">00/12</div>
+          <div class="text label pos-label">当前位置</div>
+          <div class="text wide pos-value">X105 Y000 Z114</div>
+          <div class="text label pose-label">末端姿态</div>
+          <div class="text wide pose-value">P-18 R000 G100</div>
+
+          <div class="nav nav0">首页</div>
+          <div class="nav nav1">手动</div>
+          <div class="nav nav2">关节</div>
+          <div class="nav nav3">动作</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <h2>TJC 摆放说明</h2>
+      <p>背景图不带固定中文，中文和数值建议继续用 TJC 文本/数字控件覆盖，后续 MCU 只更新控件内容。</p>
+      <p>底部导航槽位置：<code>x=7/86/165/244</code>，<code>y=219</code>，宽 <code>74</code>，高 <code>17</code>。</p>
+      <p>左侧五个值框：<code>x=73</code>，<code>y=59/85/111/137/163</code>，宽 <code>61</code>，高 <code>18</code>。</p>
+      <p>右侧动作/步骤值框：<code>x=236</code>，<code>y=59/85</code>；位置/姿态宽框：<code>x=174</code>，<code>y=137/178</code>。</p>
+    </div>
+  </div>
+</body>
+</html>

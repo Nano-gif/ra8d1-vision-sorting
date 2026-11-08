@@ -1,0 +1,238 @@
+# This file is included by the RT-Thread Studio generated Debug/makefile
+# before rtthread.elf is defined.
+#
+# Keep the Edge Impulse exported SDK out of CDT Managed Build. The same
+# sources are built through script/build_ei_v15_sdk.ps1 into libei_v15_sdk.a
+# from makefile.targets. Letting CDT compile edge_impulse_export directly
+# reintroduces CMSIS-DSP TransformFunctions MVE build failures.
+
+EI_V15_MANAGED_EXPORT_BUILD_PREFIX := Components/edge_impulse_v15/edge_impulse_export/
+EI_V15_MANAGED_EXPORT_OBJ_PREFIX := ./$(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)
+EI_V15_MANAGED_EXPORT_SRC_PREFIX := ../$(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)
+EI_V15_MANAGED_EXPORT_OBJS := $(filter $(EI_V15_MANAGED_EXPORT_OBJ_PREFIX)%,$(OBJS))
+
+OBJS := $(filter-out $(EI_V15_MANAGED_EXPORT_OBJS),$(OBJS))
+
+C_SRCS := $(filter-out $(EI_V15_MANAGED_EXPORT_SRC_PREFIX)%,$(C_SRCS))
+CC_SRCS := $(filter-out $(EI_V15_MANAGED_EXPORT_SRC_PREFIX)%,$(CC_SRCS))
+CPP_SRCS := $(filter-out $(EI_V15_MANAGED_EXPORT_SRC_PREFIX)%,$(CPP_SRCS))
+CXX_SRCS := $(filter-out $(EI_V15_MANAGED_EXPORT_SRC_PREFIX)%,$(CXX_SRCS))
+C++_SRCS := $(filter-out $(EI_V15_MANAGED_EXPORT_SRC_PREFIX)%,$(C++_SRCS))
+
+C_DEPS := $(filter-out $(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)%,$(C_DEPS))
+CC_DEPS := $(filter-out $(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)%,$(CC_DEPS))
+CPP_DEPS := $(filter-out $(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)%,$(CPP_DEPS))
+CXX_DEPS := $(filter-out $(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)%,$(CXX_DEPS))
+C++_DEPS := $(filter-out $(EI_V15_MANAGED_EXPORT_BUILD_PREFIX)%,$(C++_DEPS))
+
+APP_CPP_SMOKE_OBJ := ./APP/cpp_smoke_probe.o
+ifeq ($(filter $(APP_CPP_SMOKE_OBJ),$(OBJS)),)
+CPP_SRCS += ../APP/cpp_smoke_probe.cpp
+OBJS += $(APP_CPP_SMOKE_OBJ)
+CPP_DEPS += ./APP/cpp_smoke_probe.d
+
+$(APP_CPP_SMOKE_OBJ): ../APP/cpp_smoke_probe.cpp
+	arm-none-eabi-g++ -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -march=armv8.1-m.main+mve.fp+fp.dp -O0 -ffunction-sections -fdata-sections -Wall -g -gdwarf-2 -I"../APP" -include"../rtconfig_preinc.h" -std=gnu++11 -fabi-version=0 -fno-exceptions -fno-rtti -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+endif
+
+APP_RS485_OBJ := ./APP/rs485_app.o
+ifeq ($(filter $(APP_RS485_OBJ),$(OBJS)),)
+C_SRCS += ../APP/rs485_app.c
+OBJS += $(APP_RS485_OBJ)
+C_DEPS += ./APP/rs485_app.d
+endif
+
+APP_RS485_PHY_OBJ := ./APP/rs485_phy.o
+ifeq ($(filter $(APP_RS485_PHY_OBJ),$(OBJS)),)
+C_SRCS += ../APP/rs485_phy.c
+OBJS += $(APP_RS485_PHY_OBJ)
+C_DEPS += ./APP/rs485_phy.d
+endif
+
+APP_RS485_CMD_OBJ := ./APP/rs485_cmd.o
+ifeq ($(filter $(APP_RS485_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/rs485_cmd.c
+OBJS += $(APP_RS485_CMD_OBJ)
+C_DEPS += ./APP/rs485_cmd.d
+endif
+
+APP_CAMERA_TCP_SERVICE_OBJ := ./APP/camera_tcp_service.o
+ifeq ($(filter $(APP_CAMERA_TCP_SERVICE_OBJ),$(OBJS)),)
+C_SRCS += ../APP/camera_tcp_service.c
+OBJS += $(APP_CAMERA_TCP_SERVICE_OBJ)
+C_DEPS += ./APP/camera_tcp_service.d
+endif
+
+APP_W5500_SOFTSPI_OBJ := ./APP/w5500_softspi_app.o
+ifeq ($(filter $(APP_W5500_SOFTSPI_OBJ),$(OBJS)),)
+C_SRCS += ../APP/w5500_softspi_app.c
+OBJS += $(APP_W5500_SOFTSPI_OBJ)
+C_DEPS += ./APP/w5500_softspi_app.d
+endif
+
+APP_W5500_ETH_OBJ := ./APP/w5500_eth_app.o
+ifeq ($(filter $(APP_W5500_ETH_OBJ),$(OBJS)),)
+C_SRCS += ../APP/w5500_eth_app.c
+OBJS += $(APP_W5500_ETH_OBJ)
+C_DEPS += ./APP/w5500_eth_app.d
+endif
+
+APP_W5500_ETH_SOCKET_OBJ := ./APP/w5500_eth_socket.o
+ifeq ($(filter $(APP_W5500_ETH_SOCKET_OBJ),$(OBJS)),)
+C_SRCS += ../APP/w5500_eth_socket.c
+OBJS += $(APP_W5500_ETH_SOCKET_OBJ)
+C_DEPS += ./APP/w5500_eth_socket.d
+endif
+
+APP_W5500_ETH_CMD_OBJ := ./APP/w5500_eth_cmd.o
+ifeq ($(filter $(APP_W5500_ETH_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/w5500_eth_cmd.c
+OBJS += $(APP_W5500_ETH_CMD_OBJ)
+C_DEPS += ./APP/w5500_eth_cmd.d
+endif
+
+APP_W5500_HWSPI_OBJ := ./APP/w5500_hwspi_app.o
+ifeq ($(filter $(APP_W5500_HWSPI_OBJ),$(OBJS)),)
+C_SRCS += ../APP/w5500_hwspi_app.c
+OBJS += $(APP_W5500_HWSPI_OBJ)
+C_DEPS += ./APP/w5500_hwspi_app.d
+endif
+
+APP_PC_STATUS_OBJ := ./APP/pc_status_app.o
+ifeq ($(filter $(APP_PC_STATUS_OBJ),$(OBJS)),)
+C_SRCS += ../APP/pc_status_app.c
+OBJS += $(APP_PC_STATUS_OBJ)
+C_DEPS += ./APP/pc_status_app.d
+endif
+
+APP_PC_CMD_OBJ := ./APP/pc_cmd_app.o
+ifeq ($(filter $(APP_PC_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/pc_cmd_app.c
+OBJS += $(APP_PC_CMD_OBJ)
+C_DEPS += ./APP/pc_cmd_app.d
+endif
+
+APP_SOFTWARE_GATE_OBJ := ./APP/software_gate_app.o
+ifeq ($(filter $(APP_SOFTWARE_GATE_OBJ),$(OBJS)),)
+C_SRCS += ../APP/software_gate_app.c
+OBJS += $(APP_SOFTWARE_GATE_OBJ)
+C_DEPS += ./APP/software_gate_app.d
+endif
+
+SOFT_SPI_OBJ := ./Components/soft_spi/soft_spi.o
+ifeq ($(filter $(SOFT_SPI_OBJ),$(OBJS)),)
+C_SRCS += ../Components/soft_spi/soft_spi.c
+OBJS += $(SOFT_SPI_OBJ)
+C_DEPS += ./Components/soft_spi/soft_spi.d
+
+$(SOFT_SPI_OBJ): ../Components/soft_spi/soft_spi.c
+	@mkdir -p Components/soft_spi
+	arm-none-eabi-gcc -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -march=armv8.1-m.main+mve.fp+fp.dp -O0 -ffunction-sections -fdata-sections -Wall  -g -gdwarf-2 -I"../APP" -I".." -I"../Components" -I"../rt-thread/include" -I"../rt-thread/components/drivers/include" -I"../rt-thread/components/finsh" -I"../rt-thread/libcpu/arm/common" -I"../rt-thread/libcpu/arm/cortex-m85" -I"../ra/arm/CMSIS_5/CMSIS/Core/Include" -I"../ra/fsp/inc/api" -I"../ra/fsp/inc/instances" -I"../ra/fsp/inc" -I"../ra_cfg/fsp_cfg/bsp" -I"../ra_cfg/fsp_cfg" -I"../ra_gen" -include"../rtconfig_preinc.h" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+endif
+
+W5500_ETHERNET_OBJS := ./Components/Ethernet/wizchip_conf.o ./Components/Ethernet/socket.o ./Components/Ethernet/W5500/w5500.o
+W5500_ETHERNET_MISSING_OBJS := $(filter-out $(OBJS),$(W5500_ETHERNET_OBJS))
+ifneq ($(strip $(W5500_ETHERNET_MISSING_OBJS)),)
+C_SRCS += $(patsubst ./%,../%.c,$(W5500_ETHERNET_MISSING_OBJS:%.o=%))
+OBJS += $(W5500_ETHERNET_MISSING_OBJS)
+C_DEPS += $(W5500_ETHERNET_MISSING_OBJS:%.o=%.d)
+
+./Components/Ethernet/%.o: ../Components/Ethernet/%.c
+	@mkdir -p Components/Ethernet
+	arm-none-eabi-gcc -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -march=armv8.1-m.main+mve.fp+fp.dp -O0 -ffunction-sections -fdata-sections -Wall  -g -gdwarf-2 -I"../APP" -I".." -I"../Components" -I"../Components/Ethernet" -I"../Components/Ethernet/W5500" -I"../rt-thread/include" -I"../rt-thread/components/drivers/include" -I"../rt-thread/components/finsh" -I"../rt-thread/libcpu/arm/common" -I"../rt-thread/libcpu/arm/cortex-m85" -I"../ra/arm/CMSIS_5/CMSIS/Core/Include" -I"../ra/fsp/inc/api" -I"../ra/fsp/inc/instances" -I"../ra/fsp/inc" -I"../ra_cfg/fsp_cfg/bsp" -I"../ra_cfg/fsp_cfg" -I"../ra_gen" -include"../rtconfig_preinc.h" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+
+./Components/Ethernet/W5500/%.o: ../Components/Ethernet/W5500/%.c
+	@mkdir -p Components/Ethernet/W5500
+	arm-none-eabi-gcc -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -march=armv8.1-m.main+mve.fp+fp.dp -O0 -ffunction-sections -fdata-sections -Wall  -g -gdwarf-2 -I"../APP" -I".." -I"../Components" -I"../Components/Ethernet" -I"../Components/Ethernet/W5500" -I"../rt-thread/include" -I"../rt-thread/components/drivers/include" -I"../rt-thread/components/finsh" -I"../rt-thread/libcpu/arm/common" -I"../rt-thread/libcpu/arm/cortex-m85" -I"../ra/arm/CMSIS_5/CMSIS/Core/Include" -I"../ra/fsp/inc/api" -I"../ra/fsp/inc/instances" -I"../ra/fsp/inc" -I"../ra_cfg/fsp_cfg/bsp" -I"../ra_cfg/fsp_cfg" -I"../ra_gen" -include"../rtconfig_preinc.h" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+endif
+
+APP_CAMERA_OVERLAY_OBJ := ./APP/camera_overlay.o
+ifeq ($(filter $(APP_CAMERA_OVERLAY_OBJ),$(OBJS)),)
+C_SRCS += ../APP/camera_overlay.c
+OBJS += $(APP_CAMERA_OVERLAY_OBJ)
+C_DEPS += ./APP/camera_overlay.d
+endif
+
+APP_CAMERA_REQUEST_OBJ := ./APP/camera_request.o
+ifeq ($(filter $(APP_CAMERA_REQUEST_OBJ),$(OBJS)),)
+C_SRCS += ../APP/camera_request.c
+OBJS += $(APP_CAMERA_REQUEST_OBJ)
+C_DEPS += ./APP/camera_request.d
+endif
+
+APP_DETECT_CMD_OBJ := ./APP/detect_cmd.o
+ifeq ($(filter $(APP_DETECT_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/detect_cmd.c
+OBJS += $(APP_DETECT_CMD_OBJ)
+C_DEPS += ./APP/detect_cmd.d
+endif
+
+APP_DETECT_INJECT_OBJ := ./APP/detect_inject.o
+ifeq ($(filter $(APP_DETECT_INJECT_OBJ),$(OBJS)),)
+C_SRCS += ../APP/detect_inject.c
+OBJS += $(APP_DETECT_INJECT_OBJ)
+C_DEPS += ./APP/detect_inject.d
+endif
+
+APP_MODEL_CMD_OBJ := ./APP/model_cmd.o
+ifeq ($(filter $(APP_MODEL_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/model_cmd.c
+OBJS += $(APP_MODEL_CMD_OBJ)
+C_DEPS += ./APP/model_cmd.d
+endif
+
+APP_SOFTWARE_GATE_CMD_OBJ := ./APP/software_gate_cmd.o
+ifeq ($(filter $(APP_SOFTWARE_GATE_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/software_gate_cmd.c
+OBJS += $(APP_SOFTWARE_GATE_CMD_OBJ)
+C_DEPS += ./APP/software_gate_cmd.d
+endif
+
+APP_SOFTWARE_GATE_DETECT_OBJ := ./APP/software_gate_detect.o
+ifeq ($(filter $(APP_SOFTWARE_GATE_DETECT_OBJ),$(OBJS)),)
+C_SRCS += ../APP/software_gate_detect.c
+OBJS += $(APP_SOFTWARE_GATE_DETECT_OBJ)
+C_DEPS += ./APP/software_gate_detect.d
+endif
+
+APP_SORT_DEMO_CMD_OBJ := ./APP/sort_demo_cmd.o
+ifeq ($(filter $(APP_SORT_DEMO_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/sort_demo_cmd.c
+OBJS += $(APP_SORT_DEMO_CMD_OBJ)
+C_DEPS += ./APP/sort_demo_cmd.d
+endif
+
+APP_SORT_FLOW_ALIGN_OBJ := ./APP/sort_flow_align.o
+ifeq ($(filter $(APP_SORT_FLOW_ALIGN_OBJ),$(OBJS)),)
+C_SRCS += ../APP/sort_flow_align.c
+OBJS += $(APP_SORT_FLOW_ALIGN_OBJ)
+C_DEPS += ./APP/sort_flow_align.d
+endif
+
+APP_SORT_FLOW_AUTO_OBJ := ./APP/sort_flow_auto.o
+ifeq ($(filter $(APP_SORT_FLOW_AUTO_OBJ),$(OBJS)),)
+C_SRCS += ../APP/sort_flow_auto.c
+OBJS += $(APP_SORT_FLOW_AUTO_OBJ)
+C_DEPS += ./APP/sort_flow_auto.d
+endif
+
+APP_SORT_FLOW_QUEUE_OBJ := ./APP/sort_flow_queue.o
+ifeq ($(filter $(APP_SORT_FLOW_QUEUE_OBJ),$(OBJS)),)
+C_SRCS += ../APP/sort_flow_queue.c
+OBJS += $(APP_SORT_FLOW_QUEUE_OBJ)
+C_DEPS += ./APP/sort_flow_queue.d
+endif
+
+APP_STORAGE_CMD_OBJ := ./APP/storage_cmd.o
+ifeq ($(filter $(APP_STORAGE_CMD_OBJ),$(OBJS)),)
+C_SRCS += ../APP/storage_cmd.c
+OBJS += $(APP_STORAGE_CMD_OBJ)
+C_DEPS += ./APP/storage_cmd.d
+endif
+
+APP_STORAGE_RECORDS_OBJ := ./APP/storage_records.o
+ifeq ($(filter $(APP_STORAGE_RECORDS_OBJ),$(OBJS)),)
+C_SRCS += ../APP/storage_records.c
+OBJS += $(APP_STORAGE_RECORDS_OBJ)
+C_DEPS += ./APP/storage_records.d
+endif

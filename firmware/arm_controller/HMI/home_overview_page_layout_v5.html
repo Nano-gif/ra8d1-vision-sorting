@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页总览布局参考 v5</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #c8ced5;
+      color: #1f2933;
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .page {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .scale-box {
+      width: 640px;
+      height: 480px;
+      overflow: hidden;
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.2);
+      background: #d7dde4;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      transform: scale(2);
+      transform-origin: left top;
+      background: #d7dde4;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 320px;
+      height: 240px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .t,
+    .v {
+      position: absolute;
+      color: #1f2933;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: 0;
+    }
+
+    .title {
+      left: 10px;
+      top: 7px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #26313c;
+    }
+
+    .plain {
+      font-size: 12px;
+      color: #475565;
+    }
+
+    .value {
+      height: 18px;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav {
+      top: 220px;
+      width: 74px;
+      height: 17px;
+      text-align: center;
+      line-height: 17px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-active {
+      color: #fff;
+    }
+
+    .note {
+      width: 380px;
+      padding: 14px 16px;
+      background: #eef1f4;
+      border: 1px solid #9fa8b2;
+      box-shadow: 0 6px 18px rgba(23, 31, 39, 0.12);
+    }
+
+    .note h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .note p {
+      margin: 8px 0;
+      line-height: 1.55;
+    }
+
+    .note code {
+      padding: 1px 4px;
+      background: #dfe5eb;
+      border-radius: 2px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div>
+      <p><strong>首页总览 v5</strong>，预览按 2 倍显示；背景用不带文字的 clean 版，适合直接替换你当前 TJC 背景。</p>
+      <div class="scale-box">
+        <div class="screen">
+          <img class="bg" src="assets/home_overview_bg_320x240_v5_clean.png" alt="">
+
+          <div class="t title">机械臂控制终端</div>
+          <div class="t plain" style="left:205px; top:9px;">设备</div>
+          <div class="v value" style="left:258px; top:6px; width:47px; color:#24623d;">在线</div>
+
+          <div class="t label" style="left:16px; top:39px;">系统状态</div>
+          <div class="t label" style="left:176px; top:39px;">任务信息</div>
+
+          <div class="t plain" style="left:18px; top:63px;">状态</div>
+          <div class="v value" style="left:73px; top:58px; width:66px;">就绪</div>
+          <div class="t plain" style="left:18px; top:89px;">模式</div>
+          <div class="v value" style="left:73px; top:84px; width:66px;">空闲</div>
+          <div class="t plain" style="left:18px; top:115px;">复位</div>
+          <div class="v value" style="left:73px; top:110px; width:66px;">已复位</div>
+          <div class="t plain" style="left:18px; top:141px;">错误码</div>
+          <div class="v value" style="left:73px; top:136px; width:66px;">0</div>
+          <div class="t plain" style="left:18px; top:167px;">通信</div>
+          <div class="v value" style="left:73px; top:162px; width:66px;">正常</div>
+
+          <div class="t plain" style="left:176px; top:63px;">当前动作</div>
+          <div class="v value" style="left:236px; top:58px; width:67px;">NG分拣</div>
+          <div class="t plain" style="left:176px; top:89px;">当前步骤</div>
+          <div class="v value" style="left:236px; top:84px; width:67px;">0 / 0</div>
+          <div class="t plain" style="left:176px; top:116px;">当前位置</div>
+          <div class="v value" style="left:174px; top:132px; width:126px;">X 0  Y 0  Z 0</div>
+          <div class="t plain" style="left:176px; top:161px;">末端姿态</div>
+          <div class="v value" style="left:174px; top:177px; width:126px;">P 0  R 0  G 0</div>
+
+          <div class="t nav nav-active" style="left:7px;">首页</div>
+          <div class="t nav" style="left:86px;">手动</div>
+          <div class="t nav" style="left:165px;">关节</div>
+          <div class="t nav" style="left:244px;">动作</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <h2>建议使用</h2>
+      <p>导入 TJC 时优先用 <code>home_overview_bg_320x240_v5_clean.png</code>，因为它不带文字，不会和你现在已经摆好的控件叠在一起。</p>
+      <p>所有白框坐标沿用 v4，没有移动。你现有控件不需要重新摆，只需要替换背景图后检查一下视觉效果。</p>
+      <p><code>home_overview_bg_320x240_v5.png</code> 是带文字参考版，不建议直接替换到当前页面。</p>
+    </div>
+  </div>
+</body>
+</html>

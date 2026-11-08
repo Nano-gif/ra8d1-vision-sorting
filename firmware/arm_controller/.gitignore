@@ -1,0 +1,28 @@
+# Keil / build outputs
+Objects/
+Listings/
+*.o
+*.d
+*.crf
+*.dep
+*.lnp
+*.map
+*.axf
+*.hex
+*.htm
+*.build_log.htm
+*.sbd
+*.rpd
+
+# Debug / generated logs
+JLinkLog.txt
+hs_err_pid*.log
+
+# Local IDE/user files
+*.uvguix.*
+.vscode/
+.settings/
+
+# Temporary generated files
+output.rasc
+

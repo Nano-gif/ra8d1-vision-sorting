@@ -1,0 +1,11 @@
+menu "Application Components"
+
+config APP_USING_EDGE_IMPULSE_V15
+    bool "Enable Edge Impulse v15 inference backend"
+    default y
+    help
+        Enable the Edge Impulse v15 Visual AD inference wrapper.
+        When enabled, detect_app uses ei_v15_run_rgb88896() instead of
+        the local placeholder backend.
+
+endmenu

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页与手动页布局参考</title>
+  <style>
+    :root {
+      --bg: #d8dde3;
+      --panel: #e9edf1;
+      --line: #9fa8b2;
+      --line-dark: #67727e;
+      --text: #26313c;
+      --muted: #596674;
+      --nav: #c3cbd4;
+      --btn: #e5e8ec;
+      --active: #6f7782;
+      --slot: #f4f6f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #c9ced5;
+      color: var(--text);
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.18);
+    }
+
+    .topbar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 320px;
+      height: 28px;
+      background: linear-gradient(#edf2f7, #c8d0da);
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .title {
+      position: absolute;
+      left: 9px;
+      top: 5px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .conn {
+      position: absolute;
+      right: 16px;
+      top: 7px;
+      width: 62px;
+      height: 13px;
+      border: 1px solid var(--line-dark);
+      border-radius: 7px;
+      background: #edf1f5;
+      color: var(--muted);
+      text-align: center;
+      line-height: 11px;
+      font-size: 10px;
+    }
+
+    .panel {
+      position: absolute;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .panel-title {
+      position: absolute;
+      left: 7px;
+      top: 3px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .split {
+      position: absolute;
+      left: 0;
+      top: 17px;
+      width: 100%;
+      border-top: 1px solid #c3ccd5;
+    }
+
+    .label {
+      position: absolute;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .value {
+      position: absolute;
+      height: 20px;
+      background: var(--slot);
+      border: 1px solid var(--line-dark);
+      text-align: center;
+      line-height: 18px;
+      font-weight: 700;
+    }
+
+    .mini {
+      height: 16px;
+      line-height: 14px;
+      font-size: 12px;
+    }
+
+    .slider {
+      position: absolute;
+      height: 8px;
+      background: #cfd6de;
+      border: 1px solid #a3adb7;
+      border-radius: 4px;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      top: 3px;
+      border-top: 1px solid #b8c1ca;
+    }
+
+    .btn {
+      position: absolute;
+      height: 17px;
+      background: linear-gradient(#f9fafb, var(--btn));
+      border: 1px solid #7d8791;
+      text-align: center;
+      line-height: 15px;
+      font-weight: 700;
+    }
+
+    .nav {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 320px;
+      height: 24px;
+      background: var(--nav);
+      border-top: 1px solid var(--line-dark);
+    }
+
+    .nav div {
+      position: absolute;
+      top: 3px;
+      width: 73px;
+      height: 16px;
+      background: var(--btn);
+      border: 1px solid #7d8791;
+      text-align: center;
+      line-height: 14px;
+      font-weight: 700;
+    }
+
+    .n0 { left: 9px; }
+    .n1 { left: 87px; }
+    .n2 { left: 165px; }
+    .n3 { left: 243px; }
+    .active {
+      color: #fff;
+      background: var(--active) !important;
+      border-color: #5e6873 !important;
+    }
+
+    .notes {
+      width: min(760px, calc(100vw - 40px));
+      padding: 16px 18px;
+      background: #edf0f4;
+      border: 1px solid #9aa4ae;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    h2 {
+      margin: 18px 0 8px;
+      font-size: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 6px 7px;
+      border: 1px solid #c5ccd4;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #dfe5ec;
+    }
+
+    code {
+      padding: 1px 4px;
+      background: #dce3ea;
+      border: 1px solid #c3ccd5;
+      border-radius: 2px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section>
+      <p><strong>首页 320x240 参考</strong></p>
+      <div class="screen">
+        <div class="topbar"></div>
+        <div class="title">机械臂控制终端</div>
+        <div class="conn">在线</div>
+
+        <div class="panel" style="left:8px;top:34px;width:143px;height:58px;">
+          <div class="panel-title">机械臂状态</div><div class="split"></div>
+          <div class="label" style="left:10px;top:27px;">状态</div>
+          <div class="value" style="left:42px;top:23px;width:33px;">就绪</div>
+          <div class="label" style="left:80px;top:27px;">模式</div>
+          <div class="value" style="left:112px;top:23px;width:23px;">本</div>
+        </div>
+
+        <div class="panel" style="left:168px;top:34px;width:144px;height:58px;">
+          <div class="panel-title">通信状态</div><div class="split"></div>
+          <div class="label" style="left:10px;top:27px;">视觉</div>
+          <div class="value" style="left:42px;top:23px;width:33px;">离线</div>
+          <div class="label" style="left:80px;top:27px;">错误</div>
+          <div class="value" style="left:112px;top:23px;width:24px;">0</div>
+        </div>
+
+        <div class="panel" style="left:8px;top:101px;width:304px;height:50px;">
+          <div class="panel-title">动作总览</div><div class="split"></div>
+          <div class="label" style="left:15px;top:27px;">槽位</div>
+          <div class="value mini" style="left:48px;top:25px;width:38px;">0</div>
+          <div class="label" style="left:93px;top:27px;">当前</div>
+          <div class="value mini" style="left:129px;top:25px;width:38px;">0</div>
+          <div class="label" style="left:175px;top:27px;">总步</div>
+          <div class="value mini" style="left:212px;top:25px;width:44px;">0</div>
+        </div>
+
+        <div class="panel" style="left:8px;top:160px;width:304px;height:49px;">
+          <div class="panel-title">当前姿态 PWM(us)</div><div class="split"></div>
+          <div class="label" style="left:10px;top:27px;">B</div><div class="value mini" style="left:25px;top:25px;width:37px;">1500</div>
+          <div class="label" style="left:58px;top:27px;">S</div><div class="value mini" style="left:73px;top:25px;width:37px;">500</div>
+          <div class="label" style="left:106px;top:27px;">E</div><div class="value mini" style="left:121px;top:25px;width:37px;">500</div>
+          <div class="label" style="left:154px;top:27px;">P</div><div class="value mini" style="left:169px;top:25px;width:37px;">2443</div>
+          <div class="label" style="left:202px;top:27px;">R</div><div class="value mini" style="left:217px;top:25px;width:37px;">1457</div>
+          <div class="label" style="left:250px;top:27px;">G</div><div class="value mini" style="left:265px;top:25px;width:37px;">500</div>
+        </div>
+
+        <div class="nav">
+          <div class="n0 active">首页</div><div class="n1">手动</div><div class="n2">关节</div><div class="n3">动作</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p><strong>手动页 320x240 参考</strong></p>
+      <div class="screen">
+        <div class="topbar"></div>
+        <div class="title">手动控制</div>
+        <div class="conn">在线</div>
+
+        <div class="panel" style="left:8px;top:34px;width:143px;height:99px;">
+          <div class="panel-title">末端位移</div><div class="split"></div>
+          <div class="label" style="left:10px;top:27px;">前后X</div><div class="value mini" style="left:48px;top:27px;width:30px;">0</div><div class="slider" style="left:86px;top:31px;width:46px;"></div>
+          <div class="label" style="left:10px;top:52px;">左右Y</div><div class="value mini" style="left:48px;top:52px;width:30px;">0</div><div class="slider" style="left:86px;top:56px;width:46px;"></div>
+          <div class="label" style="left:10px;top:77px;">上下Z</div><div class="value mini" style="left:48px;top:77px;width:30px;">0</div><div class="slider" style="left:86px;top:81px;width:46px;"></div>
+        </div>
+
+        <div class="panel" style="left:168px;top:34px;width:144px;height:99px;">
+          <div class="panel-title">末端姿态</div><div class="split"></div>
+          <div class="label" style="left:10px;top:27px;">俯仰</div><div class="value mini" style="left:48px;top:27px;width:30px;">0</div><div class="slider" style="left:86px;top:31px;width:46px;"></div>
+          <div class="label" style="left:10px;top:52px;">旋转</div><div class="value mini" style="left:48px;top:52px;width:30px;">0</div><div class="slider" style="left:86px;top:56px;width:46px;"></div>
+          <div class="label" style="left:10px;top:77px;">夹爪</div><div class="value mini" style="left:48px;top:77px;width:30px;">0</div><div class="slider" style="left:86px;top:81px;width:46px;"></div>
+        </div>
+
+        <div class="panel" style="left:8px;top:142px;width:304px;height:67px;">
+          <div class="panel-title">运动参数</div><div class="split"></div>
+          <div class="label" style="left:18px;top:29px;">速度</div><div class="value mini" style="left:53px;top:26px;width:44px;">50</div>
+          <div class="label" style="left:118px;top:29px;">平滑</div><div class="value mini" style="left:153px;top:26px;width:44px;">50</div>
+          <div class="btn" style="left:216px;top:22px;width:76px;height:24px;line-height:22px;">复位</div>
+          <div class="btn" style="left:10px;top:48px;width:76px;">清零</div>
+          <div class="btn" style="left:114px;top:48px;width:76px;">保留</div>
+          <div class="btn" style="left:218px;top:48px;width:76px;">保留</div>
+        </div>
+
+        <div class="nav">
+          <div class="n0">首页</div><div class="n1 active">手动</div><div class="n2">关节</div><div class="n3">动作</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes">
+      <h1>使用方式</h1>
+      <p>最终背景图在 <code>HMI/assets/home_page_bg_320x240_v3.png</code> 和 <code>HMI/assets/manual_page_bg_320x240_v3.png</code>。固定中文已经画进背景，TJC 里只需要叠加会变化的数字、文本、滑条和按钮。</p>
+
+      <h2>首页动态控件建议</h2>
+      <table>
+        <tr><th>控件</th><th>类型</th><th>建议坐标</th><th>说明</th></tr>
+        <tr><td>t0</td><td>文本</td><td>50,58,33,20</td><td>状态：就绪/忙碌/错误</td></tr>
+        <tr><td>t1</td><td>文本</td><td>120,58,23,20</td><td>模式：本地/远程/回放</td></tr>
+        <tr><td>t2</td><td>文本</td><td>210,58,33,20</td><td>视觉端：在线/离线</td></tr>
+        <tr><td>n0</td><td>数字</td><td>280,58,24,20</td><td>错误码</td></tr>
+        <tr><td>n1</td><td>数字</td><td>56,126,38,16</td><td>动作槽位</td></tr>
+        <tr><td>n2</td><td>数字</td><td>137,126,38,16</td><td>当前步骤</td></tr>
+        <tr><td>n3</td><td>数字</td><td>220,126,44,16</td><td>总步骤</td></tr>
+        <tr><td>n4-n9</td><td>数字</td><td>32,185 起</td><td>6 路当前 PWM</td></tr>
+      </table>
+
+      <h2>手动页动态控件建议</h2>
+      <table>
+        <tr><th>控件</th><th>类型</th><th>建议坐标</th><th>第一阶段处理</th></tr>
+        <tr><td>n0-n5</td><td>数字</td><td>56,61 起</td><td>显示 X/Y/Z/俯仰/旋转/夹爪命令值</td></tr>
+        <tr><td>h0-h5</td><td>滑条</td><td>94,65 起</td><td>先作为界面占位，暂不发送联动控制帧</td></tr>
+        <tr><td>n6</td><td>数字</td><td>61,168,44,16</td><td>速度百分比</td></tr>
+        <tr><td>n7</td><td>数字</td><td>161,168,44,16</td><td>平滑强度</td></tr>
+        <tr><td>b0</td><td>按钮</td><td>224,164,76,24</td><td>复位，可发送 <code>A5 02 FF FF FF</code></td></tr>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

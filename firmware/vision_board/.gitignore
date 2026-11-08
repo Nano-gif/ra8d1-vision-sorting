@@ -1,0 +1,52 @@
+/RTE
+/Listings
+/Objects
+ra_cfg.txt
+
+/Debug/
+
+# Local agent/tool cache
+/.claude/
+/.trellis/
+__pycache__/
+*.pyc
+
+# IDE and build byproducts
+*.bak
+*.old
+*.dblite
+*.o
+*.obj
+*.d
+*.crf
+*.dep
+*.map
+*.elf
+*.axf
+*.hex
+*.bin
+*.lst
+*.lnp
+*.build_log.htm
+
+# RT-Thread generated helper files
+/rt-thread/tools/*.pyc
+/rt-thread/tools/*.mk
+
+# PC-side vision tool outputs
+/vision_template_test/
+/*_pc_vision/
+
+# PC tool portable app data (follows exe; not source code)
+/vision_pc_tool/
+/pc_tools/vision_pc_tool/
+
+# PyInstaller packaging byproducts (exe/build cache/spec/regenerable icon png)
+/pc_tools/dist/
+/pc_tools/build/
+/pc_tools/*.spec
+/pc_tools/hmi/assets/app_icon_256.png
+
+# PC tool user dataset captures (if placed in repo during testing)
+/vision_dataset/
+/pc_tools/vision_dataset/

@@ -1,0 +1,12 @@
+[
+ {
+  "name": "LVGL",
+  "path": "/packages/multimedia/LVGL/LVGL",
+  "ver": "v9.1.0"
+ },
+ {
+  "name": "GT1151",
+  "path": "/packages/peripherals/touch/gt1151",
+  "ver": "v1.0.0"
+ }
+]

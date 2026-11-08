@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>动作页布局参考</title>
+  <style>
+    :root {
+      --bg: #d8dde3;
+      --panel: #eef1f4;
+      --line: #9fa8b2;
+      --line-dark: #6f7a86;
+      --text: #1f2933;
+      --muted: #586473;
+      --blue: #2f74b8;
+      --blue-dark: #1e4f86;
+      --btn: #e7eaee;
+      --btn-dark: #c2c9d1;
+      --danger: #b74c4c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #c9ced5;
+      color: var(--text);
+      font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .page {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 24px;
+    }
+
+    .screen-wrap {
+      width: 360px;
+    }
+
+    .label {
+      margin: 0 0 10px;
+      color: #27313b;
+      font-weight: 700;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.22);
+    }
+
+    .topbar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 320px;
+      height: 28px;
+      background: linear-gradient(#edf2f7, #c8d0da);
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .title {
+      position: absolute;
+      left: 10px;
+      top: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .state {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      width: 56px;
+      height: 18px;
+      color: #fff;
+      text-align: center;
+      line-height: 18px;
+      background: var(--blue);
+      border: 1px solid var(--blue-dark);
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .panel {
+      position: absolute;
+      left: 8px;
+      top: 34px;
+      width: 304px;
+      height: 82px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .row {
+      position: absolute;
+      left: 12px;
+      width: 296px;
+      height: 18px;
+      line-height: 18px;
+      font-size: 13px;
+    }
+
+    .r1 { top: 40px; }
+    .r2 { top: 63px; }
+    .r3 { top: 86px; }
+
+    .value {
+      display: inline-block;
+      min-width: 38px;
+      text-align: right;
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .time-box {
+      position: absolute;
+      left: 116px;
+      top: 84px;
+      width: 78px;
+      height: 22px;
+      color: #111827;
+      text-align: center;
+      line-height: 20px;
+      background: #fff;
+      border: 1px solid var(--line-dark);
+      font-weight: 700;
+    }
+
+    .small-btn {
+      position: absolute;
+      top: 84px;
+      width: 32px;
+      height: 22px;
+      text-align: center;
+      line-height: 20px;
+      background: linear-gradient(#f7f8fa, var(--btn-dark));
+      border: 1px solid var(--line-dark);
+      font-weight: 700;
+    }
+
+    .minus { left: 76px; }
+    .plus { left: 202px; }
+
+    .button {
+      position: absolute;
+      width: 88px;
+      height: 28px;
+      text-align: center;
+      line-height: 26px;
+      background: linear-gradient(#f8fafc, var(--btn));
+      border: 1px solid var(--line-dark);
+      border-radius: 2px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .b1 { left: 12px; top: 128px; }
+    .b2 { left: 116px; top: 128px; }
+    .b3 { left: 220px; top: 128px; }
+    .b4 { left: 12px; top: 164px; color: #fff; background: linear-gradient(#4387ca, #2869a8); border-color: #1e4f86; }
+    .b5 { left: 116px; top: 164px; }
+    .b6 { left: 220px; top: 164px; color: #fff; background: linear-gradient(#cc6868, var(--danger)); border-color: #813737; }
+
+    .hint {
+      position: absolute;
+      left: 10px;
+      top: 202px;
+      width: 300px;
+      height: 14px;
+      color: var(--muted);
+      line-height: 14px;
+      font-size: 11px;
+    }
+
+    .nav {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 320px;
+      height: 24px;
+      background: #c3cbd4;
+      border-top: 1px solid var(--line-dark);
+    }
+
+    .nav div {
+      position: absolute;
+      top: 3px;
+      width: 76px;
+      height: 18px;
+      text-align: center;
+      line-height: 16px;
+      background: #e5e8ec;
+      border: 1px solid #7d8791;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .n0 { left: 4px; }
+    .n1 { left: 82px; }
+    .n2 { left: 160px; }
+    .n3 {
+      left: 238px;
+      color: #fff;
+      background: var(--blue) !important;
+      border-color: var(--blue-dark) !important;
+    }
+
+    .notes {
+      max-width: 610px;
+      padding: 18px 20px;
+      background: #edf0f4;
+      border: 1px solid #9aa4ae;
+      box-shadow: 0 4px 16px rgba(23, 31, 39, 0.12);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    h2 {
+      margin: 18px 0 8px;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      padding: 7px 8px;
+      border: 1px solid #c5ccd4;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #dfe5ec;
+    }
+
+    code {
+      padding: 1px 4px;
+      background: #dce3ea;
+      border: 1px solid #c3ccd5;
+      border-radius: 2px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="screen-wrap">
+      <p class="label">320x240 动作页参考</p>
+      <div class="screen">
+        <div class="topbar"></div>
+        <div class="title">NG分拣动作</div>
+        <div class="state">就绪</div>
+
+        <div class="panel"></div>
+        <div class="row r1">槽位 <span class="value">00</span>　步数 <span class="value">000</span></div>
+        <div class="row r2">当前 <span class="value">00</span>/<span class="value">00</span>　最近 <span class="value">00</span></div>
+        <div class="row r3">移动时间</div>
+        <div class="small-btn minus">-</div>
+        <div class="time-box">1000</div>
+        <div class="small-btn plus">+</div>
+
+        <div class="button b1">加步骤</div>
+        <div class="button b2">删步骤</div>
+        <div class="button b3">清空</div>
+        <div class="button b4">播放</div>
+        <div class="button b5">停止</div>
+        <div class="button b6">复位</div>
+
+        <div class="hint">示教: 关节页调姿态 -> 动作页加步骤</div>
+        <div class="nav">
+          <div class="n0">首页</div>
+          <div class="n1">手动</div>
+          <div class="n2">关节</div>
+          <div class="n3">动作</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes">
+      <h1>控件布局建议</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>显示名</th>
+            <th>建议控件</th>
+            <th>x,y,w,h</th>
+            <th>作用</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>标题</td><td>文本</td><td>10,4,130,20</td><td>页面标题</td></tr>
+          <tr><td>状态</td><td>文本</td><td>254,5,56,18</td><td>就绪/播放/停止</td></tr>
+          <tr><td>左信息框</td><td>背景区</td><td>8,34,145,59</td><td>槽位/当前步</td></tr>
+          <tr><td>右信息框</td><td>背景区</td><td>167,34,145,59</td><td>步数/最近保存</td></tr>
+          <tr><td>槽位</td><td>数字</td><td>50,53,41,13</td><td>第一版固定 0</td></tr>
+          <tr><td>当前</td><td>数字</td><td>50,73,41,13</td><td>播放到第几步</td></tr>
+          <tr><td>总步</td><td>数字</td><td>111,73,34,13</td><td>总关键帧数</td></tr>
+          <tr><td>步数</td><td>数字</td><td>216,53,41,13</td><td>MCU 返回真实步数</td></tr>
+          <tr><td>最近</td><td>数字</td><td>216,73,41,13</td><td>最近保存的步号</td></tr>
+          <tr><td>移动时间</td><td>数字</td><td>115,104,90,22</td><td>本次加步骤的运动时间 ms</td></tr>
+          <tr><td>减时间</td><td>按钮</td><td>77,106,33,18</td><td>每次 -100ms</td></tr>
+          <tr><td>加时间</td><td>按钮</td><td>210,106,33,18</td><td>每次 +100ms</td></tr>
+          <tr><td>加步骤</td><td>按钮</td><td>13,143,82,23</td><td>保存当前 6 路目标值</td></tr>
+          <tr><td>删步骤</td><td>按钮</td><td>119,143,82,23</td><td>删除最后一步</td></tr>
+          <tr><td>清空</td><td>按钮</td><td>225,143,82,23</td><td>清空动作槽</td></tr>
+          <tr><td>播放</td><td>按钮</td><td>13,169,82,23</td><td>播放 NG 分拣动作</td></tr>
+          <tr><td>停止</td><td>按钮</td><td>119,169,82,23</td><td>停止并保持当前位置</td></tr>
+          <tr><td>复位</td><td>按钮</td><td>225,169,82,23</td><td>发送 <code>A5 02</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2>第一版按键协议</h2>
+      <p><code>加步骤</code>: 发送 <code>A5 10 duration_l duration_h FF FF FF</code></p>
+      <p><code>删步骤</code>: 发送 <code>A5 11 FF FF FF</code></p>
+      <p><code>清空</code>: 发送 <code>A5 12 FF FF FF</code></p>
+      <p><code>播放</code>: 发送 <code>A5 13 FF FF FF</code></p>
+      <p><code>停止</code>: 发送 <code>A5 14 FF FF FF</code></p>
+      <p><code>复位</code>: 发送 <code>A5 02 FF FF FF</code></p>
+    </section>
+  </main>
+</body>
+</html>

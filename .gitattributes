@@ -1,0 +1,8 @@
+* text=auto
+*.bat text eol=crlf
+*.uvprojx text eol=crlf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zi binary
+*.HMI binary

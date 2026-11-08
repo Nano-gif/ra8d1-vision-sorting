@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页总览布局参考</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #c9ced5;
+      color: #1e2630;
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .page {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .screen-wrap {
+      width: 660px;
+    }
+
+    .caption {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: #26313c;
+    }
+
+    .scale-box {
+      width: 640px;
+      height: 480px;
+      overflow: hidden;
+      border: 1px solid #5c6670;
+      box-shadow: 0 10px 28px rgba(23, 31, 39, 0.22);
+      background: #111820;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      transform: scale(2);
+      transform-origin: left top;
+      background: #1d242c;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 320px;
+      height: 240px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .text {
+      position: absolute;
+      color: #e8edf2;
+      line-height: 1;
+      white-space: nowrap;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+    }
+
+    .title {
+      left: 13px;
+      top: 7px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .top-label {
+      top: 9px;
+      font-size: 11px;
+      color: #aeb8c3;
+      font-weight: 700;
+    }
+
+    .vision-label { left: 218px; }
+    .vision-value {
+      left: 265px;
+      top: 8px;
+      width: 42px;
+      height: 14px;
+      color: #07130d;
+      background: #63d18a;
+      border: 1px solid #2c8f55;
+      border-radius: 2px;
+      text-align: center;
+      line-height: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-shadow: none;
+    }
+
+    .section-title {
+      top: 36px;
+      color: #a8b3bf;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .left-title { left: 15px; }
+    .right-title { left: 174px; }
+
+    .row-label {
+      left: 16px;
+      color: #9faab6;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .row-value {
+      left: 72px;
+      width: 68px;
+      color: #f0f4f8;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .status-pill {
+      left: 72px;
+      width: 55px;
+      height: 17px;
+      color: #07130d;
+      background: linear-gradient(#80e0a1, #4fc97a);
+      border: 1px solid #2b8f53;
+      border-radius: 2px;
+      text-align: center;
+      line-height: 15px;
+      text-shadow: none;
+    }
+
+    .mode-pill {
+      left: 72px;
+      width: 55px;
+      height: 17px;
+      color: #111820;
+      background: linear-gradient(#d9e1ea, #aeb9c6);
+      border: 1px solid #77838f;
+      border-radius: 2px;
+      text-align: center;
+      line-height: 15px;
+      text-shadow: none;
+    }
+
+    .home-pill {
+      left: 72px;
+      width: 55px;
+      height: 17px;
+      color: #111820;
+      background: linear-gradient(#d9e1ea, #aeb9c6);
+      border: 1px solid #77838f;
+      border-radius: 2px;
+      text-align: center;
+      line-height: 15px;
+      text-shadow: none;
+    }
+
+    .error-box {
+      left: 72px;
+      width: 55px;
+      height: 17px;
+      color: #f2f6fa;
+      border: 1px solid #64717d;
+      background: rgba(16, 23, 30, 0.86);
+      text-align: center;
+      line-height: 15px;
+      font-weight: 700;
+    }
+
+    .r0 { top: 58px; }
+    .r1 { top: 86px; }
+    .r2 { top: 114px; }
+    .r3 { top: 142px; }
+    .r4 { top: 170px; }
+
+    .right-label {
+      left: 174px;
+      color: #9faab6;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .right-value {
+      left: 238px;
+      width: 66px;
+      color: #f0f4f8;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .action-value {
+      left: 238px;
+      width: 66px;
+      height: 17px;
+      color: #07130d;
+      background: linear-gradient(#e1f3ff, #8ec7e8);
+      border: 1px solid #4e8dae;
+      border-radius: 2px;
+      text-align: center;
+      line-height: 15px;
+      text-shadow: none;
+    }
+
+    .pos-wide {
+      left: 174px;
+      width: 132px;
+      height: 17px;
+      color: #f0f4f8;
+      border: 1px solid #64717d;
+      background: rgba(16, 23, 30, 0.82);
+      text-align: center;
+      line-height: 15px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav {
+      position: absolute;
+      top: 213px;
+      width: 73px;
+      height: 18px;
+      color: #d9e0e8;
+      text-align: center;
+      line-height: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      text-shadow: 0 1px 1px #000;
+    }
+
+    .nav.active {
+      color: #f4f7fa;
+    }
+
+    .nav0 { left: 4px; }
+    .nav1 { left: 82px; }
+    .nav2 { left: 162px; }
+    .nav3 { left: 241px; }
+
+    .legend {
+      width: 360px;
+      padding: 16px 18px;
+      background: #eef1f4;
+      border: 1px solid #9fa8b2;
+      box-shadow: 0 6px 18px rgba(23, 31, 39, 0.12);
+    }
+
+    .legend h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .legend p {
+      margin: 8px 0;
+      line-height: 1.55;
+    }
+
+    .legend code {
+      padding: 1px 4px;
+      background: #dfe5eb;
+      border-radius: 2px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      padding: 5px 6px;
+      border: 1px solid #c4ccd5;
+      text-align: left;
+    }
+
+    th {
+      background: #dbe2e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="screen-wrap">
+      <p class="caption">首页总览 320x240 布局参考，预览按 2 倍显示</p>
+      <div class="scale-box">
+        <div class="screen">
+          <img class="bg" src="assets/home_overview_bg_320x240_v1.png" alt="">
+
+          <div class="text title">机械臂控制终端</div>
+          <div class="text top-label vision-label">视觉端</div>
+          <div class="text vision-value">在线</div>
+
+          <div class="text section-title left-title">系统状态</div>
+          <div class="text section-title right-title">任务信息</div>
+
+          <div class="text row-label r0">状态</div>
+          <div class="text status-pill r0">就绪</div>
+          <div class="text row-label r1">模式</div>
+          <div class="text mode-pill r1">空闲</div>
+          <div class="text row-label r2">复位</div>
+          <div class="text home-pill r2">已复位</div>
+          <div class="text row-label r3">错误码</div>
+          <div class="text error-box r3">0</div>
+          <div class="text row-label r4">通信</div>
+          <div class="text row-value r4">正常</div>
+
+          <div class="text right-label r0">当前动作</div>
+          <div class="text action-value r0">NG分拣</div>
+          <div class="text right-label r1">当前步骤</div>
+          <div class="text right-value r1">00 / 12</div>
+          <div class="text right-label r2">当前位置</div>
+          <div class="text pos-wide r3">X105 Y000 Z114</div>
+          <div class="text right-label r4">末端姿态</div>
+          <div class="text pos-wide" style="top: 188px;">P-18 R000 G100</div>
+
+          <div class="nav nav0 active">首页</div>
+          <div class="nav nav1">手动</div>
+          <div class="nav nav2">关节</div>
+          <div class="nav nav3">动作</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <h2>TJC 控件建议</h2>
+      <p>背景图只放结构和质感，中文和数值都用 TJC 控件叠上去。首页只显示状态，不放运动控制按钮。</p>
+      <table>
+        <tr><th>区域</th><th>建议控件</th><th>内容</th></tr>
+        <tr><td>顶部</td><td><code>t0/t1/t2</code></td><td>标题、视觉端、在线/离线</td></tr>
+        <tr><td>左侧</td><td><code>t3-t12</code> / <code>n0</code></td><td>状态、模式、复位、错误码、通信</td></tr>
+        <tr><td>右侧</td><td><code>t20-t26</code> / <code>n1/n2</code></td><td>动作、步骤、位置、姿态</td></tr>
+        <tr><td>底部</td><td><code>b0-b3</code></td><td>首页、手动、关节、动作</td></tr>
+      </table>
+      <p>后续 MCU 首页查询可以单独用 <code>A5 40 FF FF FF</code>，避免和手动页 <code>A5 33</code>、动作页 <code>A5 15</code> 混用。</p>
+    </div>
+  </div>
+</body>
+</html>

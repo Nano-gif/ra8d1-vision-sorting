@@ -1,0 +1,54 @@
+from building import *
+
+cwd = GetCurrentDir()
+ei_root = cwd + '/edge_impulse_export'
+ei_sdk = ei_root + '/edge-impulse-sdk'
+
+src = []
+CPPPATH = [
+    cwd,
+    '#/APP',
+    ei_root,
+    ei_sdk,
+]
+
+if GetDepend('APP_USING_EDGE_IMPULSE_V15'):
+    src += ['ei_v15_inference.cpp', 'ei_v15_porting.cpp']
+    src += Glob(ei_root + '/tflite-model/*.cpp')
+
+    src += Glob(ei_sdk + '/classifier/*.cpp')
+    src += Glob(ei_sdk + '/dsp/*.cpp')
+    src += Glob(ei_sdk + '/dsp/image/*.cpp')
+    src += Glob(ei_sdk + '/dsp/dct/*.cpp')
+    src += Glob(ei_sdk + '/dsp/kissfft/*.cpp')
+
+    src += Glob(ei_sdk + '/tensorflow/lite/core/api/*.cc')
+    src += Glob(ei_sdk + '/tensorflow/lite/kernels/*.cc')
+    src += Glob(ei_sdk + '/tensorflow/lite/kernels/custom/*.cc')
+    src += Glob(ei_sdk + '/tensorflow/lite/kernels/internal/*.cc')
+    src += Glob(ei_sdk + '/tensorflow/lite/micro/*.cc')
+    src += Glob(ei_sdk + '/tensorflow/lite/micro/kernels/*.cc')
+    src += Glob(ei_sdk + '/tensorflow/lite/micro/memory_planner/*.cc')
+    src += [ei_sdk + '/tensorflow/lite/c/common.c']
+
+    src += Glob(ei_sdk + '/CMSIS/DSP/Source/CommonTables/*.c')
+    src += Glob(ei_sdk + '/CMSIS/DSP/Source/BasicMathFunctions/*.c')
+    src += Glob(ei_sdk + '/CMSIS/DSP/Source/ComplexMathFunctions/*.c')
+    src += Glob(ei_sdk + '/CMSIS/DSP/Source/FastMathFunctions/*.c')
+    src += Glob(ei_sdk + '/CMSIS/DSP/Source/SupportFunctions/*.c')
+    matrix_src = Glob(ei_sdk + '/CMSIS/DSP/Source/MatrixFunctions/*.c')
+    matrix_src = [f for f in matrix_src if str(f).find('arm_mat_ldlt_f32.c') < 0]
+    src += matrix_src
+    src += Glob(ei_sdk + '/CMSIS/DSP/Source/StatisticsFunctions/*.c')
+    src += Glob(ei_sdk + '/CMSIS/NN/Source/*/*.c')
+
+    LOCAL_CPPDEFINES = [
+        'EI_CLASSIFIER_TFLITE_ENABLE_CMSIS_NN=1',
+        'EI_CLASSIFIER_ALLOCATION_STATIC=1',
+        'EI_TENSOR_ARENA_LOCATION=.ai_sram',
+        'ARM_MATH_LOOPUNROLL',
+    ]
+
+group = DefineGroup('edge_impulse_v15', src, depend = ['APP_USING_EDGE_IMPULSE_V15'], CPPPATH = CPPPATH, CPPDEFINES = LOCAL_CPPDEFINES)
+
+Return('group')

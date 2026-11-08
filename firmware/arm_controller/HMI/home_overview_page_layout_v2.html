@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页总览布局参考 v2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #c9ced5;
+      color: #1f2933;
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .page {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .screen-wrap {
+      width: 660px;
+    }
+
+    .caption {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: #27313b;
+    }
+
+    .scale-box {
+      width: 640px;
+      height: 480px;
+      overflow: hidden;
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.2);
+      background: #d8dde3;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      transform: scale(2);
+      transform-origin: left top;
+      background: #d8dde3;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 320px;
+      height: 240px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .text {
+      position: absolute;
+      color: #1f2933;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: 0;
+    }
+
+    .title {
+      left: 10px;
+      top: 6px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .vision-label {
+      left: 220px;
+      top: 8px;
+      color: #4d5966;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .vision-value {
+      left: 267px;
+      top: 6px;
+      width: 42px;
+      height: 18px;
+      color: #fff;
+      background: #2f74b8;
+      border: 1px solid #1e4f86;
+      text-align: center;
+      line-height: 16px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .panel-title {
+      top: 39px;
+      color: #40505f;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .left-title { left: 14px; }
+    .right-title { left: 174px; }
+
+    .label {
+      color: #586473;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .left-label { left: 17px; }
+    .left-value { left: 75px; }
+    .right-label { left: 174px; }
+    .right-value { left: 238px; }
+
+    .r0 { top: 62px; }
+    .r1 { top: 88px; }
+    .r2 { top: 114px; }
+    .r3 { top: 140px; }
+    .r4 { top: 166px; }
+
+    .value {
+      width: 60px;
+      height: 18px;
+      color: #17202a;
+      background: #f6f8fa;
+      border: 1px solid #7b8794;
+      text-align: center;
+      line-height: 16px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .value.blue {
+      color: #fff;
+      background: linear-gradient(#4387ca, #2869a8);
+      border-color: #1e4f86;
+    }
+
+    .value.green {
+      color: #fff;
+      background: linear-gradient(#64b885, #3a9560);
+      border-color: #2a7148;
+    }
+
+    .value.gray {
+      background: linear-gradient(#f8fafc, #d9e0e8);
+    }
+
+    .value.error {
+      color: #17202a;
+      background: #fff;
+    }
+
+    .wide {
+      width: 124px;
+      height: 18px;
+      color: #17202a;
+      background: #f6f8fa;
+      border: 1px solid #7b8794;
+      text-align: center;
+      line-height: 16px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .step {
+      width: 60px;
+      height: 18px;
+      color: #17202a;
+      background: #f6f8fa;
+      border: 1px solid #7b8794;
+      text-align: center;
+      line-height: 16px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav {
+      position: absolute;
+      top: 214px;
+      width: 73px;
+      height: 18px;
+      color: #26313c;
+      text-align: center;
+      line-height: 18px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav.active {
+      color: #fff;
+      background: #6f7782;
+      border: 1px solid #5b6570;
+    }
+
+    .nav0 { left: 4px; }
+    .nav1 { left: 83px; }
+    .nav2 { left: 162px; }
+    .nav3 { left: 242px; }
+
+    .legend {
+      width: 360px;
+      padding: 16px 18px;
+      background: #eef1f4;
+      border: 1px solid #9fa8b2;
+      box-shadow: 0 6px 18px rgba(23, 31, 39, 0.12);
+    }
+
+    .legend h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .legend p {
+      margin: 8px 0;
+      line-height: 1.55;
+    }
+
+    .legend code {
+      padding: 1px 4px;
+      background: #dfe5eb;
+      border-radius: 2px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      padding: 5px 6px;
+      border: 1px solid #c4ccd5;
+      text-align: left;
+    }
+
+    th {
+      background: #dbe2e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="screen-wrap">
+      <p class="caption">首页总览 v2，浅灰工业风，预览按 2 倍显示</p>
+      <div class="scale-box">
+        <div class="screen">
+          <img class="bg" src="assets/home_overview_bg_320x240_v2.png" alt="">
+
+          <div class="text title">机械臂控制终端</div>
+          <div class="text vision-label">视觉端</div>
+          <div class="text vision-value">在线</div>
+
+          <div class="text panel-title left-title">系统状态</div>
+          <div class="text panel-title right-title">任务信息</div>
+
+          <div class="text label left-label r0">状态</div>
+          <div class="text value green left-value r0">就绪</div>
+          <div class="text label left-label r1">模式</div>
+          <div class="text value gray left-value r1">空闲</div>
+          <div class="text label left-label r2">复位</div>
+          <div class="text value gray left-value r2">已复位</div>
+          <div class="text label left-label r3">错误码</div>
+          <div class="text value error left-value r3">0</div>
+          <div class="text label left-label r4">通信</div>
+          <div class="text value blue left-value r4">正常</div>
+
+          <div class="text label right-label r0">当前动作</div>
+          <div class="text value blue right-value r0">NG分拣</div>
+          <div class="text label right-label r1">当前步骤</div>
+          <div class="text step right-value r1">00/12</div>
+          <div class="text label right-label r2">当前位置</div>
+          <div class="text wide" style="left: 174px; top: 136px;">X105 Y000 Z114</div>
+          <div class="text label right-label r4">末端姿态</div>
+          <div class="text wide" style="left: 174px; top: 185px;">P-18 R000 G100</div>
+
+          <div class="nav nav0 active">首页</div>
+          <div class="nav nav1">手动</div>
+          <div class="nav nav2">关节</div>
+          <div class="nav nav3">动作</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <h2>TJC 摆放参考</h2>
+      <p>这版按前面手动页、动作页的浅灰风格重做。背景只负责分区，中文标签和值仍用 TJC 控件叠放。</p>
+      <table>
+        <tr><th>区域</th><th>控件</th><th>内容</th></tr>
+        <tr><td>顶部</td><td><code>t0/t1/t2</code></td><td>设备名、视觉端、在线/离线</td></tr>
+        <tr><td>左区</td><td><code>t3-t12</code>、<code>n0</code></td><td>状态、模式、复位、错误码、通信</td></tr>
+        <tr><td>右区</td><td><code>t20-t26</code>、<code>n1/n2</code></td><td>动作、步骤、位置、姿态</td></tr>
+        <tr><td>底部</td><td><code>b0-b3</code></td><td>首页、手动、关节、动作</td></tr>
+      </table>
+      <p>如果这版风格通过，再按它在 TJC 里摆控件；后续 MCU 首页状态同步再单独设计 <code>A5 40</code>。</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>手动点动页布局参考</title>
+  <style>
+    :root {
+      --bg: #d8dde3;
+      --top-a: #edf2f7;
+      --top-b: #c8d0da;
+      --panel: #e9edf1;
+      --panel-dark: #d2dae2;
+      --line: #9fa8b2;
+      --line-dark: #65717e;
+      --text: #26313c;
+      --muted: #5b6876;
+      --slot: #f7f9fb;
+      --button: #e6eaee;
+      --active: #6f7782;
+      --blue: #2f74b8;
+      --danger: #b96565;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 22px;
+      background: #c9ced5;
+      color: var(--text);
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .page {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.2);
+    }
+
+    .topbar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 320px;
+      height: 28px;
+      background: linear-gradient(var(--top-a), var(--top-b));
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .title {
+      position: absolute;
+      left: 9px;
+      top: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .tag {
+      position: absolute;
+      top: 6px;
+      height: 16px;
+      padding: 0 7px;
+      border: 1px solid var(--line-dark);
+      border-radius: 2px;
+      background: #edf1f5;
+      color: var(--text);
+      text-align: center;
+      line-height: 14px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .frame-tag {
+      right: 64px;
+    }
+
+    .state-tag {
+      right: 9px;
+      color: #fff;
+      background: var(--blue);
+      border-color: #1e4f86;
+    }
+
+    .panel {
+      position: absolute;
+      left: 7px;
+      top: 33px;
+      width: 306px;
+      height: 124px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .row {
+      position: absolute;
+      left: 11px;
+      width: 298px;
+      height: 18px;
+      line-height: 18px;
+    }
+
+    .r0 { top: 38px; }
+    .r1 { top: 58px; }
+    .r2 { top: 78px; }
+    .r3 { top: 98px; }
+    .r4 { top: 118px; }
+    .r5 { top: 138px; }
+
+    .label {
+      position: absolute;
+      left: 0;
+      width: 34px;
+      color: var(--text);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .btn {
+      position: absolute;
+      top: 0;
+      height: 18px;
+      border: 1px solid var(--line-dark);
+      background: linear-gradient(#f9fafb, var(--button));
+      text-align: center;
+      line-height: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .minus {
+      left: 42px;
+      width: 45px;
+    }
+
+    .plus {
+      left: 214px;
+      width: 45px;
+    }
+
+    .value {
+      position: absolute;
+      left: 97px;
+      top: 0;
+      width: 105px;
+      height: 18px;
+      background: var(--slot);
+      border: 1px solid var(--line-dark);
+      text-align: center;
+      line-height: 16px;
+      font-weight: 700;
+    }
+
+    .unit {
+      position: absolute;
+      left: 268px;
+      top: 0;
+      width: 28px;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: left;
+    }
+
+    .param-panel {
+      position: absolute;
+      left: 7px;
+      top: 163px;
+      width: 306px;
+      height: 48px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .param {
+      position: absolute;
+      top: 6px;
+      height: 16px;
+      line-height: 16px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .p0 { left: 12px; }
+    .p1 { left: 111px; }
+    .p2 { left: 211px; }
+
+    .small {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin: 0 1px;
+      border: 1px solid var(--line-dark);
+      background: linear-gradient(#fafbfc, var(--button));
+      text-align: center;
+      line-height: 14px;
+    }
+
+    .num {
+      display: inline-block;
+      width: 28px;
+      height: 16px;
+      border: 1px solid var(--line-dark);
+      background: var(--slot);
+      text-align: center;
+      line-height: 14px;
+      font-weight: 700;
+    }
+
+    .cmd {
+      position: absolute;
+      top: 26px;
+      width: 82px;
+      height: 17px;
+      border: 1px solid var(--line-dark);
+      background: linear-gradient(#f9fafb, var(--button));
+      text-align: center;
+      line-height: 15px;
+      font-weight: 700;
+    }
+
+    .stop {
+      left: 13px;
+      color: #fff;
+      background: linear-gradient(#cc7777, var(--danger));
+      border-color: #8a3d3d;
+    }
+
+    .home {
+      left: 112px;
+    }
+
+    .mode {
+      left: 211px;
+      color: #fff;
+      background: linear-gradient(#89929d, var(--active));
+      border-color: #545d68;
+    }
+
+    .nav {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 320px;
+      height: 24px;
+      background: #c3cbd4;
+      border-top: 1px solid var(--line-dark);
+    }
+
+    .nav div {
+      position: absolute;
+      top: 3px;
+      width: 73px;
+      height: 16px;
+      border: 1px solid #7d8791;
+      background: #e5e8ec;
+      text-align: center;
+      line-height: 14px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .n0 { left: 9px; }
+    .n1 {
+      left: 87px;
+      color: #fff;
+      background: var(--active) !important;
+      border-color: #5e6873 !important;
+    }
+    .n2 { left: 165px; }
+    .n3 { left: 243px; }
+
+    .notes {
+      width: min(780px, calc(100vw - 44px));
+      padding: 16px 18px;
+      background: #edf0f4;
+      border: 1px solid #9aa4ae;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    h2 {
+      margin: 18px 0 8px;
+      font-size: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      padding: 6px 7px;
+      border: 1px solid #c5ccd4;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #dfe5ec;
+    }
+
+    code {
+      padding: 1px 4px;
+      border: 1px solid #c3ccd5;
+      border-radius: 2px;
+      background: #dce3ea;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section>
+      <p><strong>320x240 手动点动页参考</strong></p>
+      <div class="screen">
+        <div class="topbar"></div>
+        <div class="title">手动控制</div>
+        <div class="tag frame-tag">基座</div>
+        <div class="tag state-tag">就绪</div>
+
+        <div class="panel"></div>
+        <div class="row r0">
+          <div class="label">X</div><div class="btn minus">-</div><div class="value">+000</div><div class="btn plus">+</div><div class="unit">mm</div>
+        </div>
+        <div class="row r1">
+          <div class="label">Y</div><div class="btn minus">-</div><div class="value">+000</div><div class="btn plus">+</div><div class="unit">mm</div>
+        </div>
+        <div class="row r2">
+          <div class="label">Z</div><div class="btn minus">-</div><div class="value">+000</div><div class="btn plus">+</div><div class="unit">mm</div>
+        </div>
+        <div class="row r3">
+          <div class="label">俯仰</div><div class="btn minus">-</div><div class="value">+000</div><div class="btn plus">+</div><div class="unit">deg</div>
+        </div>
+        <div class="row r4">
+          <div class="label">旋转</div><div class="btn minus">-</div><div class="value">+000</div><div class="btn plus">+</div><div class="unit">deg</div>
+        </div>
+        <div class="row r5">
+          <div class="label">夹爪</div><div class="btn minus">开</div><div class="value">050</div><div class="btn plus">合</div><div class="unit">%</div>
+        </div>
+
+        <div class="param-panel">
+          <div class="param p0">速<span class="small">-</span><span class="num">050</span><span class="small">+</span></div>
+          <div class="param p1">柔<span class="small">-</span><span class="num">020</span><span class="small">+</span></div>
+          <div class="param p2">步<span class="small">-</span><span class="num">005</span><span class="small">+</span></div>
+          <div class="cmd stop">停止</div>
+          <div class="cmd home">复位</div>
+          <div class="cmd mode">连续</div>
+        </div>
+
+        <div class="nav">
+          <div class="n0">首页</div>
+          <div class="n1">手动</div>
+          <div class="n2">关节</div>
+          <div class="n3">动作</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes">
+      <h1>控件放置建议</h1>
+      <p>这版是最终目标方向的手动页参考：专业示教器风格，按坐标系点动 TCP 末端，不直接调 PWM。现在先用于摆界面，固件协议和运动学后续再单独确认。</p>
+
+      <h2>动态控件</h2>
+      <table>
+        <tr><th>用途</th><th>建议控件</th><th>x,y,w,h</th><th>说明</th></tr>
+        <tr><td>坐标系</td><td>文本/按钮</td><td>213,6,40,16</td><td>显示 `基座`，后续点击切换 `工具/工件/相机`</td></tr>
+        <tr><td>状态</td><td>文本</td><td>264,6,47,16</td><td>显示 `就绪/运动/错误`</td></tr>
+        <tr><td>X-</td><td>按钮</td><td>53,38,45,18</td><td>连续模式按下开始，弹起停止；步进模式弹起执行一步</td></tr>
+        <tr><td>X值</td><td>数字</td><td>108,38,105,18</td><td>显示当前 TCP X 或点动累计值</td></tr>
+        <tr><td>X+</td><td>按钮</td><td>225,38,45,18</td><td>同 X-，方向相反</td></tr>
+        <tr><td>Y/Z/俯仰/旋转/夹爪</td><td>同上</td><td>y 每行 +20</td><td>夹爪左右按钮显示 `开/合`</td></tr>
+        <tr><td>速度</td><td>数字+按钮</td><td>19,169 起</td><td>范围 `1-100`，默认 `50`</td></tr>
+        <tr><td>柔和</td><td>数字+按钮</td><td>118,169 起</td><td>范围 `0-100`，默认 `20`</td></tr>
+        <tr><td>步长</td><td>数字+按钮</td><td>218,169 起</td><td>范围 `1-50`，默认 `5`</td></tr>
+        <tr><td>停止</td><td>按钮</td><td>20,189,82,17</td><td>停止当前手动运动，保持当前位置</td></tr>
+        <tr><td>复位</td><td>按钮</td><td>119,189,82,17</td><td>发送现有复位命令</td></tr>
+        <tr><td>模式</td><td>按钮</td><td>218,189,82,17</td><td>`连续/步进` 循环切换</td></tr>
+      </table>
+
+      <h2>事件原则</h2>
+      <p>现在只建议先摆控件，不急着填运动控制事件。复位按钮可以沿用现有 <code>A5 02 FF FF FF</code>，其它点动命令要等我们确认新的手动页协议和 IK 模块后再写。</p>
+    </section>
+  </main>
+</body>
+</html>

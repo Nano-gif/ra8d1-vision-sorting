@@ -1,0 +1,18 @@
+EI_V15_LIB := Components/edge_impulse_v15/libei_v15_sdk.a
+EI_V15_BUILD_SCRIPT := ../script/build_ei_v15_sdk.ps1
+POWERSHELL := C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+
+USER_OBJS += $(EI_V15_LIB)
+
+rtthread.elf: $(EI_V15_LIB)
+
+$(EI_V15_LIB): $(EI_V15_BUILD_SCRIPT) ../Components/edge_impulse_v15/ei_v15_sdk_sources.mk ../Components/edge_impulse_v15/ei_v15_inference.cpp ../Components/edge_impulse_v15/ei_v15_porting.cpp ../Components/edge_impulse_v15/edge_impulse_export/tflite-model/tflite-resolver.h ../Components/edge_impulse_v15/edge_impulse_export/edge-impulse-sdk/tensorflow/lite/micro/micro_log.h ../Components/edge_impulse_v15/edge_impulse_export/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.h ../Components/edge_impulse_v15/edge_impulse_export/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.cc ../Components/edge_impulse_v15/edge_impulse_export/edge-impulse-sdk/tensorflow/lite/micro/micro_graph.cc ../Components/edge_impulse_v15/edge_impulse_export/edge-impulse-sdk/classifier/inferencing_engines/tflite_micro.h
+	$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File "$(EI_V15_BUILD_SCRIPT)" -ProjectRoot ".." -ConfigDir "."
+
+clean2:
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS)
+	-$(RM) $(OBJS) *.elf
+	-$(RM) -r ei_v15_sdk Components/edge_impulse_v15/libei_v15_sdk.a
+	-@echo ' '
+
+*.elf: $(wildcard ../script/fsp.ld)

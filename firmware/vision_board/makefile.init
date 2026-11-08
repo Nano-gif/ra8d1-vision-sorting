@@ -1,0 +1,14 @@
+# RT-Thread Studio emits dependency targets such as D\:\path\header.h in .d
+# files. Define no-op rules before dependency files are included so GNU Make
+# does not try to build those escaped Windows absolute paths.
+D\\\:%:
+	@:
+
+d\\\:%:
+	@:
+
+E\\\:%:
+	@:
+
+e\\\:%:
+	@:

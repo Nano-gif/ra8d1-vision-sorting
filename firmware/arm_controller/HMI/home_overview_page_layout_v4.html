@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页总览布局参考 v4</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #c8ced5;
+      color: #1f2933;
+      font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .page {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .screen-wrap {
+      width: 640px;
+    }
+
+    .caption {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: #27313b;
+    }
+
+    .scale-box {
+      width: 640px;
+      height: 480px;
+      overflow: hidden;
+      border: 1px solid #5c6670;
+      box-shadow: 0 8px 22px rgba(23, 31, 39, 0.2);
+      background: #d7dde4;
+    }
+
+    .screen {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      overflow: hidden;
+      transform: scale(2);
+      transform-origin: left top;
+      background: #d7dde4;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 320px;
+      height: 240px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .value {
+      position: absolute;
+      height: 18px;
+      color: #17202a;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      letter-spacing: 0;
+    }
+
+    .top-value {
+      left: 258px;
+      top: 6px;
+      width: 47px;
+      height: 16px;
+      line-height: 16px;
+      color: #24623d;
+    }
+
+    .left-value {
+      left: 73px;
+      width: 66px;
+    }
+
+    .right-value {
+      left: 236px;
+      width: 67px;
+    }
+
+    .wide {
+      left: 174px;
+      width: 126px;
+      height: 20px;
+      line-height: 20px;
+    }
+
+    .green {
+      color: #24623d;
+    }
+
+    .blue {
+      color: #1e5f9a;
+    }
+
+    .note {
+      width: 390px;
+      padding: 14px 16px;
+      background: #eef1f4;
+      border: 1px solid #9fa8b2;
+      box-shadow: 0 6px 18px rgba(23, 31, 39, 0.12);
+    }
+
+    .note h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .note p {
+      margin: 8px 0;
+      line-height: 1.55;
+    }
+
+    .note code {
+      padding: 1px 4px;
+      background: #dfe5eb;
+      border-radius: 2px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      padding: 5px 6px;
+      border: 1px solid #c4ccd5;
+      text-align: left;
+    }
+
+    th {
+      background: #dbe2e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="screen-wrap">
+      <p class="caption">首页总览 v4，白色框就是 TJC 里需要放动态文本/数字控件的位置</p>
+      <div class="scale-box">
+        <div class="screen">
+          <img class="bg" src="assets/home_overview_bg_320x240_v4.png" alt="">
+
+          <div class="value top-value">在线</div>
+
+          <div class="value left-value green" style="top: 58px;">就绪</div>
+          <div class="value left-value" style="top: 84px;">空闲</div>
+          <div class="value left-value" style="top: 110px;">已复位</div>
+          <div class="value left-value" style="top: 136px;">0</div>
+          <div class="value left-value blue" style="top: 162px;">正常</div>
+
+          <div class="value right-value blue" style="top: 58px;">NG分拣</div>
+          <div class="value right-value" style="top: 84px;">00/12</div>
+          <div class="value wide" style="top: 132px;">X105 Y000 Z114</div>
+          <div class="value wide" style="top: 177px;">P-18 R000 G100</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <h2>TJC 控件摆放参考</h2>
+      <p>这版背景已经把固定文字画进图片里，TJC 里只需要在白框上放动态值控件。</p>
+      <table>
+        <tr><th>内容</th><th>建议控件</th><th>x,y,w,h</th></tr>
+        <tr><td>视觉端状态</td><td>文本</td><td><code>258,6,47,16</code></td></tr>
+        <tr><td>状态</td><td>文本</td><td><code>73,58,66,18</code></td></tr>
+        <tr><td>模式</td><td>文本</td><td><code>73,84,66,18</code></td></tr>
+        <tr><td>复位</td><td>文本</td><td><code>73,110,66,18</code></td></tr>
+        <tr><td>错误码</td><td>数字</td><td><code>73,136,66,18</code></td></tr>
+        <tr><td>通信</td><td>文本</td><td><code>73,162,66,18</code></td></tr>
+        <tr><td>当前动作</td><td>文本</td><td><code>236,58,67,18</code></td></tr>
+        <tr><td>当前步骤</td><td>文本</td><td><code>236,84,67,18</code></td></tr>
+        <tr><td>当前位置</td><td>文本</td><td><code>174,132,126,20</code></td></tr>
+        <tr><td>末端姿态</td><td>文本</td><td><code>174,177,126,20</code></td></tr>
+      </table>
+      <p>底部导航文字已经画进背景。如果你想继续用按钮控件覆盖，也可以把按钮设置成透明或只保留触摸区域。</p>
+    </div>
+  </div>
+</body>
+</html>

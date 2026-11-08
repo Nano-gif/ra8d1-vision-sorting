@@ -1,0 +1,14 @@
+from building import *
+
+cwd = GetCurrentDir()
+src = Glob('*.c') + Glob('*.cpp')
+CPPPATH = [
+    cwd,
+    '#/board/ports/camera',
+    '#/board/ports/camera/sensors',
+    '#/board/lvgl/ui',
+]
+
+group = DefineGroup('APP', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

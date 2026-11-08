@@ -1,0 +1,21 @@
+from building import *
+import os
+
+cwd = GetCurrentDir()
+
+# PC simulator only needs src/ui; this SConscript makes the same UI layer build
+# inside the RT-Thread LVGL board port. Do not add PC simulator HAL/main files here.
+src = Glob('*.c')
+src += Glob('pages/*.c')
+src += Glob('fonts/*.c')
+
+CPPPATH = [
+    cwd,
+    '#/APP',
+    os.path.join(cwd, 'pages'),
+    os.path.join(cwd, 'fonts'),
+]
+
+group = DefineGroup('LVGL-user-ui', src, depend=['BSP_USING_LVGL'], CPPPATH=CPPPATH)
+
+Return('group')

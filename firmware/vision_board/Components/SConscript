@@ -1,0 +1,12 @@
+from building import *
+
+cwd = GetCurrentDir()
+src = []
+CPPPATH = [cwd]
+
+group = DefineGroup('Components', src, depend = [''], CPPPATH = CPPPATH)
+
+if GetDepend('APP_USING_EDGE_IMPULSE_V15'):
+    group = group + SConscript('edge_impulse_v15/SConscript')
+
+Return('group')
